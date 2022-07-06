@@ -1,11 +1,19 @@
 import '../styles/globals.css';
-import withRedux from 'next-redux-wrapper';
-import { makeStore } from '../store/configStore';
+import store from '../store/configStore';
+import { createWrapper } from 'next-redux-wrapper'
+import Layout from '../components/layout';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Component {...pageProps} />
+    <>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   );
 }
 
-export default withRedux(makeStore)(MyApp);
+const makeStore = () => store
+export const wrapper = createWrapper(makeStore)
+
+export default wrapper.withRedux(MyApp);

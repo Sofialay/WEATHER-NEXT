@@ -15,26 +15,28 @@ export default function Main() {
   const [tab, setTab] = useState('London');
 
   // get data and save in the store
-  const getCityData = useCallback(async(city) => {
-    let weather = await getWeatherByCity(city);
-    dispatch(addNewWeather(weather));
-    setFilteredCity([weather]);
-  },[dispatch])
+  // const getCityData = useCallback(async(city) => {
+  //   let weather = await getWeatherByCity(city);
+  //   dispatch(addNewWeather(weather));
+  //   setFilteredCity([weather]);
+  // },[dispatch])
 
   useEffect(() => {
+    // dispachar a redux state selectedCity
     //fetch data weather if I don't find it in my store
-    if(weatherList.findIndex(elem => elem.name === tab) === -1){
-      getCityData(tab);
-    } else {
-      // if exists filter the data from the store
-      let out = [];
-      weatherList.filter((city) => {
-        if (city.name === tab) return out.push(city);
-      });
-      setFilteredCity(out);
-    }
-    
-  }, [getCityData, tab]);
+    // if(weatherList.findIndex(elem => elem.name === tab) === -1){
+    //   getCityData(tab);
+    // } else {
+    //   // if exists filter the data from the store
+    //   let out = [];
+    //   weatherList.filter((city) => {
+    //     if (city.name === tab) return out.push(city);
+    //   });
+    //   setFilteredCity(out);
+    // }
+    dispatch(addNewWeather(tab));
+  }, [tab]);
+  // getCityData,
 
   return (
     <div className="w-4/6 flex justify-between items-start">

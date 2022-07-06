@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {CITIES} from '../../utils/constants'
 
 export default function Tabs({ setTab, tab, children }) {
@@ -11,30 +12,32 @@ export default function Tabs({ setTab, tab, children }) {
       >
         {CITIES.map((city, idx) => (
           <li className="nav-item" role="presentation" key={idx}>
-            <div
-              role="button"
-              onClick={() => setTab(city.name)}
-              className={`
-              nav-link
-              w-full
-              block
-              font-medium
-              text-xs
-              leading-tight
-              uppercase
-              border-x-0 border-t-0 ${
-                tab === city.name && 'border-b-2 border-green-200'
-              }
-              px-6
-              py-3
-              my-2
-              hover:bg-gray-100
-              focus:border-transparent
-              active
-            `}
-            >
-              {city.name}
-            </div>
+            <Link href={'/tokio'}>
+              <div
+                role="button"
+                onClick={() => setTab(city.name)}
+                className={`
+                nav-link
+                w-full
+                block
+                font-medium
+                text-xs
+                leading-tight
+                uppercase
+                border-x-0 border-t-0 ${
+                  tab === city.name && 'border-b-2 border-green-200'
+                }
+                px-6
+                py-3
+                my-2
+                hover:bg-gray-100
+                focus:border-transparent
+                active
+              `}
+              >
+                {city.name}
+              </div>
+            </Link>
           </li>
         ))}
       </ul>
